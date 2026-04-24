@@ -1,12 +1,13 @@
-- [ ] returning a custom dto (ie. hiding some data, or forcing a return on delete/put)
-- [ ] accepting a custom dto
+- [x] returning a custom dto (ie. hiding some data, or forcing a return on delete/put)
+- [x] accepting a custom dto
 - [ ] validations - best practices
-- [ ] query params - best practices
+- [x] query params - best practices
 - [x] 5, 6creating nested records
 - [x] returning nested records (relations)
 
-EF -> adding postgres / env variables
 DI -> with a custom slugify + unqiue constraint
+
+EF -> adding postgres / env variables
 Authentication
 
 - [ ] many to many example with additional data
