@@ -1,0 +1,18 @@
+@Lesson4_HostAddress = http://localhost:5107
+
+### Get all todo lists
+GET {{Lesson4_HostAddress}}/api/TodoLists
+Accept: application/json
+
+###
+
+### Create a new todo list
+POST {{Lesson4_HostAddress}}/api/TodoLists
+Content-Type: application/json
+
+{
+  "title": "Weekend chores",
+  "description": "Things to do this Saturday"
+}
+
+###
