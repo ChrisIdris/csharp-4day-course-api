@@ -54,5 +54,8 @@ Money is `decimal` everywhere. Timestamps are `DateTime.UtcNow`. If those rules 
 | 6 | [`6_includes_and_cycles.md`](6_includes_and_cycles.md) | `6_lesson_related_records_and_cycles.md` |
 | 7 | [`7_query_params.md`](7_query_params.md) | `7_lesson_query_params_and_filtering.md` |
 | 8 | [`8_dtos.md`](8_dtos.md) | `8_lesson_dtos.md` |
+| 9 | [`9_authentication.md`](9_authentication.md) | `authentication/auth_1_…`, `auth_2_…`, `auth_3_…` |
 
 Start with Exercise 1.
+
+> **Exercise 9 (authentication)** is bigger than the others — it covers the full three-lesson auth arc in one file. It's reachable from the end of Exercise 6 onwards (it doesn't require Exercises 7 or 8), so you can detour into auth early if that's the path you want.
