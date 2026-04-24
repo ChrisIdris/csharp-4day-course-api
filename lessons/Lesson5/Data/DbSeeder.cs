@@ -4,12 +4,8 @@ namespace Lesson5.Data;
 
 public static class DbSeeder
 {
-    // Called once at app startup (from Program.cs). Imperative seeding path — dev/demo
-    // content, anything that can't be compile-time constants. The Inbox (and its Welcome
-    // todo) is seeded via HasData; this method only adds the rest.
     public static void Seed(AppDbContext db)
     {
-        // Idempotency sentinel: if "Groceries" is already in the DB, we've already seeded.
         if (db.TodoLists.Any(x => x.Title == "Groceries"))
         {
             return;

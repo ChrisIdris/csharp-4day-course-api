@@ -12,26 +12,18 @@ public class Todo : IHasUpdatedAt
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    // Satisfies IHasUpdatedAt — AppDbContext.SaveChanges stamps this automatically.
     public DateTime? UpdatedAt { get; set; }
 
-    // --- Foreign key + navigation property ---------------------------------------
-
-    // Scalar FK stored as the TodoListId column. Required (non-nullable int):
-    // every Todo MUST belong to a TodoList. Attempting to insert without it fails.
     public int TodoListId { get; set; }
 
-    // Navigation property — the parent TodoList. EF loads it when you Include() it,
-    // and ALSO sets it automatically (via "navigation fixup") whenever it loads a Todo
-    // alongside its parent — e.g. when TodoListsController.GetTodoList uses
-    //   _context.TodoLists.Include(l => l.Todos)
-    // EF loads the todos AND points each one back at the parent list. Without the
-    // [JsonIgnore] below, that back-reference creates a graph cycle and System.Text.Json
-    // throws a JsonException when it tries to serialize it.
+    // [JsonIgnore] — when TodoListsController.GetTodoList uses .Include(l => l.Todos),
+    // EF Core's navigation fixup points each loaded Todo back at its parent TodoList.
+    // That creates a graph cycle (TodoList → Todos → Todo → TodoList → ...), and
+    // System.Text.Json throws "A possible object cycle was detected."
     //
-    // [JsonIgnore] says: "this property exists in C#, but skip it during JSON
-    // (de)serialization." Code-side traversal still works; the wire format just
-    // doesn't include it.
+    // [JsonIgnore] tells the serializer: "this property exists in C#, but skip it during
+    // JSON (de)serialization." Code-side traversal still works; the wire format just
+    // doesn't include the back-reference.
     [JsonIgnore]
     public TodoList? TodoList { get; set; }
 }

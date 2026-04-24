@@ -10,7 +10,6 @@ public class Todo : IHasUpdatedAt
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    // Satisfies IHasUpdatedAt — AppDbContext.SaveChanges stamps this automatically.
     public DateTime? UpdatedAt { get; set; }
 
     // --- Foreign key + navigation property ---------------------------------------
