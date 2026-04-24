@@ -1,0 +1,43 @@
+# Local Postgres for the Postgres lesson track.
+#
+# Docker is infrastructure — this stack stands up a Postgres reachable from your
+# machine so the .NET app can connect to it over TCP. The app itself runs
+# NATIVELY (dotnet run), not inside Docker. The container just provides the DB.
+#
+# Port mapping: 5433 (host) → 5432 (container).
+#   The container listens on its canonical 5432 internally; your host sees it on
+#   5433. This avoids colliding with any native Postgres already listening on
+#   5432, so both can coexist.
+#
+# Credentials:
+#   username: postgres
+#   password: postgres
+#   database: bank
+#
+# These are local defaults, not secrets, and are safe to commit. Match them in
+# Postgres{1,2,3}/appsettings.Development.json.
+#
+# Commands:
+#   From this folder:
+#     docker compose up -d        start the DB in the background
+#     docker compose ps           confirm it's running
+#     docker compose down         stop it (data preserved in the named volume)
+#     docker compose down -v      stop AND delete the volume (fresh DB next time)
+#
+# If you already have Postgres installed natively, you don't need this file —
+# just point your connection string at your existing instance.
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bank
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
