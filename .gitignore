@@ -109,3 +109,6 @@ $RECYCLE.BIN/
 *.tmp
 *.swp
 *~
+
+# Test files (temporary curl test data)
+test-*.json
