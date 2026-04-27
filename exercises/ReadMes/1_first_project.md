@@ -60,6 +60,8 @@ curl -X POST http://localhost:<port>/api/Accounts \
      -d '{"accountNumber":"ACC-1000"}'
 # → {"id":1,"accountNumber":"ACC-1000","createdAt":"..."}
 
+curl -X POST http://localhost:5247/api/Accounts -H "Content-Type: application/json" -d '{\"accountNumber\":\"ACC-1000\"}'
+
 # 3) Fetch it back
 curl http://localhost:<port>/api/Accounts/1
 # → same shape as the POST response
