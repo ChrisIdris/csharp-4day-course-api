@@ -1,6 +1,117 @@
 @BankingApi_HostAddress = http://localhost:5247
+@BankingApi_ProdHost = http://api.example.com
 
-GET {{BankingApi_HostAddress}}/weatherforecast/
+
+### GET all accounts
+GET {{BankingApi_HostAddress}}/api/Accounts
 Accept: application/json
 
 ###
+
+### GET account by ID
+GET {{BankingApi_HostAddress}}/api/Accounts/1
+Accept: application/json
+
+###
+
+### POST (Create) new account
+POST {{BankingApi_HostAddress}}/api/Accounts
+Content-Type: application/json
+
+{}
+
+###
+
+### PUT (Update) account
+PUT {{BankingApi_HostAddress}}/api/Accounts/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "accountNumber": "ACC-1001",
+  "createdAt": "2024-01-01T00:00:00Z"
+}
+
+###
+
+### DELETE account
+DELETE {{BankingApi_HostAddress}}/api/Accounts/1
+
+###
+
+### GET all Branches
+GET {{BankingApi_HostAddress}}/api/Branches
+Accept: application/json
+
+###
+
+### GET branch by ID
+GET {{BankingApi_HostAddress}}/api/Branches/1
+Accept: application/json
+
+###
+
+### POST (Create) new branch
+POST {{BankingApi_HostAddress}}/api/Branches
+Content-Type: application/json
+
+{}
+
+###
+
+### PUT (Update) branch
+PUT {{BankingApi_HostAddress}}/api/Branches/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Main Branch",
+  "address": "123 Main St, Cityville",
+  "createdAt": "2024-01-01T00:00:00Z"
+}
+
+###
+
+### DELETE branch
+DELETE {{BankingApi_HostAddress}}/api/Branches/1
+
+###
+
+### GET all Customers
+GET {{BankingApi_HostAddress}}/api/Customers
+Accept: application/json
+
+###
+
+### GET customer by ID
+GET {{BankingApi_HostAddress}}/api/Customers/1
+Accept: application/json
+
+###
+
+### POST (Create) new customer
+POST {{BankingApi_HostAddress}}/api/Customers
+Content-Type: application/json
+
+{}
+
+###
+
+### PUT (Update) customer
+PUT {{BankingApi_HostAddress}}/api/Customers/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "fullName": "John Doe",
+  "email": "johndoe@example.com",
+  "createdAt": "2024-01-01T00:00:00Z"
+}
+
+###
+
+### DELETE customer
+DELETE {{BankingApi_HostAddress}}/api/Customers/1
+
+###
+

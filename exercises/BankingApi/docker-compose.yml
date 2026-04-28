@@ -1,0 +1,42 @@
+# Docker Compose for BankingApi - PostgreSQL Database
+#
+# This file sets up a PostgreSQL database for the BankingApi project.
+# The API runs natively (dotnet run), not in Docker - only the database runs in a container.
+#
+# Port mapping: 5433 (host) → 5432 (container)
+#   This avoids conflicts if you have PostgreSQL installed locally on port 5432.
+#
+# Credentials (for local development only):
+#   username: postgres
+#   password: postgres
+#   database: bankingdb
+#
+# Commands:
+#   Start the database:    docker compose up -d
+#   Check status:          docker compose ps
+#   View logs:             docker compose logs db
+#   Stop the database:     docker compose down
+#   Reset everything:      docker compose down -v  (deletes all data!)
+#
+services:
+  db:
+    image: postgres:16
+    container_name: bankingapi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bankingdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - bankingdb_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  bankingdb_data:
+    name: bankingdb_data
